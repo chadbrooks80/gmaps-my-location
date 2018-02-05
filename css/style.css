@@ -1,3 +1,11 @@
+#map {
+    height: 100%;
+}
+
 h1 {
     color: red;
+}
+
+#search-places {
+    width: 500px;
 }
