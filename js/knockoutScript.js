@@ -1,14 +1,10 @@
+var x;
 var viewModel = {
     places: ko.observableArray(),
-    showMarkerInfoWindow: function() {
-        console.log("did it work?")
+    showInfoWindow: function() {
+        populateInfoWindow(this, largeInfowindow)
     }
 }
 
-var viewModelFunctions = {
-    showMarkerInfoWindow: function() {
-        console.log("did it work?")
-    }
-}
 
 ko.applyBindings(viewModel);

@@ -2,6 +2,14 @@
     margin: 0;
     padding: 0;
 }
+
+ul li {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: red;
+    font-size: 25px;
+}
+
 .container {
     position: relative;
     height: 100%;

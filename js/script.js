@@ -5,6 +5,7 @@ var places = [];
 var markers = [];
 var bounds;
 var categories = [];
+var largeInfowindow;
 
 //record placeIDs used to get coordinates and other information.
 var placeIDs = [
@@ -40,7 +41,7 @@ function initMap() {
     // set up infoWindow, bounds & service for Google Places
     var service = new google.maps.places.PlacesService(map);
     bounds = new google.maps.LatLngBounds();
-    var largeInfowindow = new google.maps.InfoWindow();
+    largeInfowindow = new google.maps.InfoWindow();
 
     // Goes through Places by ID and get's location
     for(var i=0; i < placeIDs.length; i++) {
@@ -74,7 +75,7 @@ function initMap() {
 
                     //pushes to viewModel, which is declared in the 
                     //knockoutScript.js as an observableArray
-                    viewModel.places.push(placeToAdd);
+                    viewModel.places.push(marker);
 
                     marker.addListener('click', function() {
                             populateInfoWindow(this, largeInfowindow)

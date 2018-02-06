@@ -13,8 +13,8 @@
     <input type="text" placeholder="Search for your own places here!" id="search-places">
     <button id="search-places-button">Search Now</button>
     <ul data-bind="foreach:places">
-        <li>
-           <span data-bind="text:$data.name, click:showMarkerInfoWindow"></span>
+        <li data-bind="click: $parent.showInfoWindow">
+           <span data-bind="text: $data.placeDetails.name"></span>
         </li>
     </ul>
 </div>
