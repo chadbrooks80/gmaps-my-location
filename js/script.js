@@ -43,17 +43,21 @@ function initMap() {
     var largeInfowindow = new google.maps.InfoWindow();
 
     // Goes through Places by ID and get's location
-    for(i=0; i < placeIDs.length; i++) {
+    for(var i=0; i < placeIDs.length; i++) {
         service.getDetails({placeId: placeIDs[i]},
             function(place, status) {
                 if(status != google.maps.places.PlacesServiceStatus.OK) {
                     console.log("error: " + status);
                 } else {
+                    
                     marker = new google.maps.Marker({
                         map: map,
                         location: place.geometry.location,
-                        title: place.name
+                        title: place.name,
+                        id: placeIDs.indexOf(place.place_id)
                     });
+
+        
                     
                     marker.setPosition(place.geometry.location);
                     //addMarker(place, infoWindow);
@@ -62,25 +66,32 @@ function initMap() {
                     
                     markers.push(marker);
 
+                    //add into viewModel for KnockoutJS
+                    placeToAdd = {
+                        name: place.name,
+                        id: placeIDs.indexOf(place.place_id)
+                    }
+
+                    //pushes to viewModel, which is declared in the 
+                    //knockoutScript.js as an observableArray
+                    viewModel.places.push(placeToAdd);
+
                     marker.addListener('click', function() {
                             populateInfoWindow(this, largeInfowindow)
                     });
 
                     //adds the categories to create a list later
                     types = marker.placeDetails.types
-                    for(i=0; i < types.length; i++) {
-                        // console.log(types[i])
-                        if ( categories.indexOf(types[i]) == -1 ) {
-                            categories.push(types[i]);
+                    for(var j=0; j < types.length; j++) {
+                        // console.log(types[j])
+                        if ( categories.indexOf(types[j]) == -1 ) {
+                            categories.push(types[j]);
                         }
                     }
                 }
             }
         );
     }
-
-
-
 
     // AUTO COMPLETE FOR SEARCH FEATURE
     //autocomplete to search for site
