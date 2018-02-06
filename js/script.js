@@ -4,7 +4,6 @@ var map;
 var places = []; 
 var markers = [];
 var bounds;
-var categories = [];
 var largeInfowindow;
 
 //record placeIDs used to get coordinates and other information.
@@ -85,8 +84,8 @@ function initMap() {
                     types = marker.placeDetails.types
                     for(var j=0; j < types.length; j++) {
                         // console.log(types[j])
-                        if ( categories.indexOf(types[j]) == -1 ) {
-                            categories.push(types[j]);
+                        if ( viewModel.categories.indexOf(types[j]) == -1 ) {
+                            viewModel.categories.push(types[j]);
                         }
                     }
                 }

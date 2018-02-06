@@ -12,7 +12,15 @@
     <h1>My Favorite Locations</h1>
     <input type="text" placeholder="Search for your own places here!" id="search-places">
     <button id="search-places-button">Search Now</button>
-    <ul data-bind="foreach:places">
+
+    <ul data-bind="foreach:categories">
+        <li>
+            <input type="checkbox" data-bind="click: $parent.filterMarkers">
+            <span data-bind="text: $data"></span>
+        </li>
+    </ul>
+
+    <ul id="listings" data-bind="foreach:places">
         <li data-bind="click: $parent.showInfoWindow">
            <span data-bind="text: $data.placeDetails.name"></span>
         </li>
