@@ -15,7 +15,7 @@
 
     <ul data-bind="foreach:categories">
         <li>
-            <input type="checkbox" data-bind="click: $parent.filterMarkers">
+            <input type="checkbox" checked data-bind="checkedValue: $data, checked: $parent.selectedCategories">
             <span data-bind="text: $data"></span>
         </li>
     </ul>

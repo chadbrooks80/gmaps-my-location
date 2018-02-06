@@ -86,6 +86,7 @@ function initMap() {
                         // console.log(types[j])
                         if ( viewModel.categories.indexOf(types[j]) == -1 ) {
                             viewModel.categories.push(types[j]);
+                            viewModel.selectedCategories.push(types[j]);
                         }
                     }
                 }
