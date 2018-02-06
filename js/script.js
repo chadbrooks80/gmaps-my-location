@@ -4,6 +4,7 @@ var map;
 var places = []; 
 var markers = [];
 var bounds;
+var categories = [];
 
 //record placeIDs used to get coordinates and other information.
 var placeIDs = [
@@ -64,6 +65,15 @@ function initMap() {
                     marker.addListener('click', function() {
                             populateInfoWindow(this, largeInfowindow)
                     });
+
+                    //adds the categories to create a list later
+                    types = marker.placeDetails.types
+                    for(i=0; i < types.length; i++) {
+                        // console.log(types[i])
+                        if ( categories.indexOf(types[i]) == -1 ) {
+                            categories.push(types[i]);
+                        }
+                    }
                 }
             }
         );
@@ -103,7 +113,10 @@ function populateInfoWindow(marker, infoWindow) {
     //add infowindow
     if (infoWindow.marker != marker) {
         infoWindow.marker = marker;
-        infoWindow.setContent("<div>" + marker.placeDetails.name + "</div>");
+        infoWindow.setContent(
+            "<div>" + marker.placeDetails.name + "</div>" +
+            "<div>" + marker.placeDetails.formatted_address + "</div>"
+        );
         infoWindow.open(map, marker);
         //ensure marker is closed when x is clicked
         infoWindow.addListener('closeclick', function() {

@@ -1,5 +1,20 @@
-#map {
+*, body {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    position: relative;
     height: 100%;
+    padding-left: 15px;
+    background-color: bisque;
+}
+
+#map {
+    position: absolute;
+    height: 100%;
+    left: 362px;
+    right: 0;
+    bottom: 0;
 }
 
 h1 {
@@ -7,5 +22,5 @@ h1 {
 }
 
 #search-places {
-    width: 500px;
+    width: 250px;
 }
